@@ -13,7 +13,7 @@ public class LightColorBehaviour : LightsBehaviour
 
     private void Update()
     {
-        float sample = properties.GetSample(properties.FrequencyRange, properties.Sensitivity, properties.ClampMin, properties.ClampMax);
+        float sample = properties.GetSample();
         LerpLightColor(Lights, sample, properties.Smoothing, Gradient);
     }
 }
