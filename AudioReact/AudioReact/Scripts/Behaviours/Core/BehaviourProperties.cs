@@ -18,16 +18,16 @@ public class BehaviorProperties
         }
     }
 
-    public float GetSample(FrequencyRange frequencyRange, float sensitivity, float clampMin, float clampMax)
+    public float GetSample()
     {
-        float sample = AudioReactSampler.Instance.FrequencySamples[(int)frequencyRange] * sensitivity;
+        float sample = AudioReactSampler.Instance.FrequencySamples[(int)FrequencyRange] * Sensitivity;
 
         if (float.IsNaN(sample))
         {
             sample = 0;
         }
 
-        Mathf.Clamp(sample, clampMin, clampMax);
+        sample = Mathf.Lerp(sample, ClampMin, ClampMax, sample);
 
         return sample;
     }
