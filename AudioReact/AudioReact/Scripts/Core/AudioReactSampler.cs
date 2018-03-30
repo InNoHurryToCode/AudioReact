@@ -27,6 +27,7 @@ namespace AudioReact
 
         public bool Use;
         public float VolumeThreshold = 0.01f;
+        public float AudioMultiplier;
         public AudioMixerGroup SilentMixer;
 
         private void Awake()
@@ -63,8 +64,10 @@ namespace AudioReact
         private float[] outputData;     // used for GetRMS
         private float frequencyMax;
         private int samplesAmount;
+        private float audioMultiplier;
         private float audioVolume;
 
+        public float AudioSourceMultiplier;
         public AudioSource AudioSource;
         public AudioReactInput Input;
 
@@ -133,6 +136,12 @@ namespace AudioReact
                         AudioSource.Play();
                     }
                 }
+                
+                audioMultiplier = Input.AudioMultiplier;
+            }
+            else
+            {
+                audioMultiplier = AudioSourceMultiplier;
             }
 
             AudioSource.GetSpectrumData(frequencyData, 0, FFTWindow.BlackmanHarris);
@@ -236,6 +245,11 @@ namespace AudioReact
 
                 threadPool.OnUpdate();
             }
+            
+            for (int i = 0; i < FrequencySamples.Length; i++)
+            {
+                FrequencySamples[i] *= audioMultiplier;
+            }
         }
 
         public float[] GetFrequencyRange(FrequencyRange frequencyRange)
@@ -270,7 +284,8 @@ namespace AudioReact
 
             if (audioInput.Length == 0)
             {
-                Debug.LogWarning("AudioReactSampler: no input device found");
+                Debug.LogWarning("AudioReactSampler: no input device found");\
+                Input.Use = false;
                 return;
             }
 
