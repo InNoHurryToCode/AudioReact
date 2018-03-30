@@ -12,7 +12,7 @@ public class MaterialEmissiveIntensityBehaviour : MaterialsBehaviour
 
     private void Update()
     {
-        float sample = properties.GetSample(properties.FrequencyRange, properties.Sensitivity, properties.ClampMin, properties.ClampMax);
+        float sample = properties.GetSample();
         LerpMaterialAlphaProperty(Materials, sample, properties.Smoothing, "_EmissionColor");
     }
 }
