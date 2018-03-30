@@ -12,7 +12,7 @@ public class MaterialSmoothnessBehaviour : MaterialsBehaviour
 
     private void Update()
     {
-        float sample = properties.GetSample(properties.FrequencyRange, properties.Sensitivity, properties.ClampMin, properties.ClampMax);
+        float sample = properties.GetSample();
         LerpMaterialFloatProperty(Materials, sample, properties.Smoothing, "_Glossiness");
     }
 }
