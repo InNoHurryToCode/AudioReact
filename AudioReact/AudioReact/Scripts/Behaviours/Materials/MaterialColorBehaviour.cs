@@ -13,7 +13,7 @@ public class MaterialColorBehaviour : MaterialsBehaviour
 
     private void Update()
     {
-        float sample = properties.GetSample(properties.FrequencyRange, properties.Sensitivity, properties.ClampMin, properties.ClampMax);
+        float sample = properties.GetSample();
         LerpMaterialColorProperty(Materials, sample, properties.Smoothing, "_Color", gradient);
     }
 }
