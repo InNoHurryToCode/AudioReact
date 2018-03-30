@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using AudioReact;
 
 [System.Serializable]
@@ -27,7 +27,7 @@ public class BehaviorProperties
             sample = 0;
         }
 
-        sample = Mathf.Lerp(sample, ClampMin, ClampMax, sample);
+        sample = Mathf.Lerp(ClampMin, ClampMax, sample);
 
         return sample;
     }
